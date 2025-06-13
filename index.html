@@ -231,14 +231,12 @@
         /* Responsive Design */
         @media (max-width: 900px) {
             .main-layout {
-                /* Change: Stack vertically, character on top */
                 flex-direction: column;
                 min-height: auto;
                 padding: 0;
             }
 
             .character-panel {
-                /* Change: Character panel at the top, not overlapping */
                 position: relative;
                 height: 50vh;
                 width: 100%;
@@ -248,7 +246,6 @@
             }
 
             .controls-panel {
-                /* Change: Controls panel below the character */
                 padding: 2rem 1rem;
                 width: 100%;
                 box-sizing: border-box;
@@ -261,11 +258,10 @@
 <body>
 
     <div class="main-layout">
-        <!-- Change: Order reversed for semantic clarity, mobile layout is now controlled by flex-direction -->
         <div class="character-panel">
             <div id="effect-container"></div>
             <div id="character-container">
-                <img id="character-image" src="img/meranoimg.png" alt="Merano 立ち絵">
+                <img id="character-image" src="https://i.imgur.com/6KVik27.png" alt="Merano 立ち絵">
             </div>
         </div>
         <div class="controls-panel">
@@ -302,19 +298,20 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Change: Updated audio file paths
             const voices = [
-                { id: 'voice_01', text: 'チュッ♥', file: null },
-                { id: 'voice_02', text: 'いらっしゃーい！', file: null },
-                { id: 'voice_03', text: 'かわいい～！', file: null },
-                { id: 'voice_04', text: 'えー？ かわいい？ ありがとう！', file: null },
-                { id: 'voice_05', text: 'えー？ かわいい？ 知ってる', file: null },
-                { id: 'voice_06', text: 'あら～♥', file: null },
-                { id: 'voice_07', text: '乾杯～！', file: null },
-                { id: 'voice_08', text: '酒レディオープナー！', file: null },
-                { id: 'voice_09', text: 'ぷぅ！', file: null },
-                { id: 'voice_10', text: 'ちょっとヤダ～', file: null },
-                { id: 'voice_11', text: 'なんで～！？', file: null },
-                { id: 'voice_12', text: '皆に素敵が降り注ぎますよーに！ チュッ♥', file: null }
+                { id: 'voice_01', text: 'チュッ♥', file: 'audio/01.wav' },
+                { id: 'voice_02', text: 'いらっしゃーい！', file: 'audio/02.wav' },
+                { id: 'voice_03', text: 'かわいい～！', file: 'audio/03.wav' },
+                { id: 'voice_04', text: 'えー？ かわいい？ ありがとう！', file: 'audio/04.wav' },
+                { id: 'voice_05', text: 'えー？ かわいい？ 知ってる', file: 'audio/05.wav' },
+                { id: 'voice_06', text: 'あら～♥', file: 'audio/06.wav' },
+                { id: 'voice_07', text: '乾杯～！', file: 'audio/07.wav' },
+                { id: 'voice_08', text: '酒レディオープナー！', file: 'audio/08.wav' },
+                { id: 'voice_09', text: 'ぷぅ！', file: 'audio/09.wav' },
+                { id: 'voice_10', text: 'ちょっとヤダ～', file: 'audio/10.wav' },
+                { id: 'voice_11', text: 'なんで～！？', file: 'audio/11.wav' },
+                { id: 'voice_12', text: '皆に素敵が降り注ぎますよーに！ チュッ♥', file: 'audio/12.wav' }
             ];
 
             const samplerContainer = document.getElementById('voice-sampler');
@@ -392,13 +389,12 @@
                 effect.className = 'click-effect';
                 button.appendChild(effect);
 
-                if (voice.file) {
-                    const audio = document.createElement('audio');
-                    audio.id = `audio-${voice.id}`;
-                    audio.src = voice.file;
-                    audio.preload = 'auto';
-                    audioContainer.appendChild(audio);
-                }
+                // Create audio element for each voice
+                const audio = document.createElement('audio');
+                audio.id = `audio-${voice.id}`;
+                audio.src = voice.file;
+                audio.preload = 'auto';
+                audioContainer.appendChild(audio);
 
                 button.addEventListener('click', () => {
                     const audioEl = document.getElementById(`audio-${voice.id}`);
